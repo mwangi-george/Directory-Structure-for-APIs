@@ -12,6 +12,7 @@ def create_application() -> FastAPI:
         description="Made with ❤️ by George Mwangi"
     )
     app.include_router(user_router)
+    return app
 
 
 app = create_application()
