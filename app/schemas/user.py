@@ -1,14 +1,8 @@
-
-
-# Using a list of dictionaries for easier subsetting
-# defining it globally for later use
-all_users = {
-    0: {
-        "first_name": "George",
-        "middle_name": "Ngugi",
-        "last_name": "Mwangi"
-    }
-}
+from typing import Optional
+from pydantic import (
+    BaseModel,
+    Field,
+)
 
 
 class Roads(BaseModel):
