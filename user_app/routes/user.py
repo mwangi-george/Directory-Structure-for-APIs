@@ -26,15 +26,15 @@ def create_user_router() -> APIRouter:
         user = await user_service.get_user(user_id)
         return user
 
-    @user_router.post("/", response_model=CreateUserResponse)
-    async def add_user(new_user_info: User):
+    @user_router.post("/", response_model=CreateUserResponse, status_code=201)
+    async def add_user(new_user_info: User) -> CreateUserResponse:
         user_id = await user_service.create_or_update_user(new_user_info)
         created_user = CreateUserResponse(user_id=user_id)
         return created_user
 
     @user_router.put("/{user_id}")
-    async def update_user(user_id: int, user_profile: User) -> None:
-        await user_service.create_or_update_user(user_profile, user_id)
+    async def update_user(user_id: int, user_details: User) -> None:
+        await user_service.create_or_update_user(user_profile=user_details, new_user_id=user_id)
         return None
 
     @user_router.delete("/{user_id}")
