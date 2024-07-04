@@ -1,3 +1,4 @@
+from typing import Optional, Tuple
 # Using a list of dictionaries for easier subsetting
 # defining it globally for later use
 all_users = {
@@ -15,6 +16,7 @@ class UserService:
     def __init__(self) -> None:
         pass
 
+    @staticmethod
     async def get_user(user_id: int = 0) -> User:
         user = all_users[user_id]
         return User(**user)
@@ -31,7 +33,7 @@ class UserService:
 
         return new_user_id
 
-    async def get_multiple_users_with_pagination(start: int, limit: int) -> Tuple[list[User], int]:
+    async def get_multiple_users_with_pagination(self, start: int, limit: int) -> Tuple[list[User], int]:
         """Get 2 users at a time"""
 
         list_of_users = []
@@ -43,7 +45,7 @@ class UserService:
                 continue
 
             current_key = keys[index]
-            user = await get_user(current_key)
+            user = await self.get_user(current_key)
             list_of_users.append(user)
 
             if len(list_of_users) >= limit:
@@ -51,9 +53,11 @@ class UserService:
 
         return list_of_users, total
 
+    @staticmethod
     async def delete_user(user_id: int) -> None:
         del all_users[user_id]
 
+    @staticmethod
     async def update_middle_name(user_id: int, middle_name: str) -> None:
         all_users[user_id]["middle_name"] = middle_name
         return None
