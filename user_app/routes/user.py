@@ -1,4 +1,8 @@
-from fastapi import APIRouter
+from fastapi.responses import Response
+from fastapi import (
+    APIRouter,
+    status,
+)
 from user_app.services.user import UserService
 from user_app.schemas.user import (
     CreateUserResponse,
@@ -47,5 +51,9 @@ def create_user_router() -> APIRouter:
         await user_service.update_middle_name(user_id, middle_name)
         updated_user = await user_service.get_user(user_id=user_id)
         return updated_user
+
+    @user_router.patch("/dummy")
+    async def test_response_code() -> Response:
+        return Response(status_code=status.HTTP_204_NO_CONTENT)
 
     return user_router
