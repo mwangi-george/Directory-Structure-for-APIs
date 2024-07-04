@@ -16,11 +16,6 @@ class UserService:
     def __init__(self) -> None:
         pass
 
-    @staticmethod
-    async def get_user(user_id: int = 0) -> User:
-        user = all_users[user_id]
-        return User(**user)
-
     async def create_or_update_user(user_profile: User, new_user_id: Optional[int] = None) -> int:
         if new_user_id is None:
             new_user_id = len(all_users)
@@ -32,6 +27,11 @@ class UserService:
         }
 
         return new_user_id
+
+    @staticmethod
+    async def get_user(user_id: int = 0) -> User:
+        user = all_users[user_id]
+        return User(**user)
 
     async def get_multiple_users_with_pagination(self, start: int, limit: int) -> Tuple[list[User], int]:
         """Get 2 users at a time"""
