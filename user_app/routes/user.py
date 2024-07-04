@@ -11,7 +11,7 @@ def create_user_router() -> APIRouter:
 
     user_router = APIRouter(
         prefix="/user",
-        tags=["User EndPoints"]
+        tags=["User EndPoints"],
     )
     user_service = UserService()
 
