@@ -1,10 +1,16 @@
 from fastapi import FastAPI
-from app.routes.user import user_router
+from app.routes.user import create_user_router
 
-app = FastAPI(
-    title="API UserManager",
-    description="Made with ❤️ by George Mwangi"
-)
-app.include_router(user_router)
 
-# add user_router to our app
+def create_application() -> FastAPI:
+
+    user_router = create_user_router()
+    app = FastAPI(
+        title="API UserManager",
+        description="Made with ❤️ by George Mwangi"
+    )
+    app.include_router(user_router)
+
+
+# application factory pattern
+app = create_application()
