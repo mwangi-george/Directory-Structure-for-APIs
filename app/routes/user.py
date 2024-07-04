@@ -3,7 +3,7 @@ from app.services.user import UserService
 from app.schemas.user import (
     CreateUserResponse,
     MultipleUsersResponse,
-    User
+    User,
 )
 
 
@@ -48,4 +48,5 @@ async def remove_user(user_id: int) -> None:
 @user_router.patch("/user/{user_id}", response_model=User)
 async def update_user_middle_name(user_id: int, middle_name: str) -> User:
     await user_service.update_middle_name(user_id, middle_name)
-    return await user_service.get_user(user_id=user_id)
+    updated_user = await user_service.get_user(user_id=user_id)
+    return updated_user

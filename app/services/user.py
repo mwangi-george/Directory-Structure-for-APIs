@@ -1,7 +1,6 @@
 from typing import Optional, Tuple
 from app.schemas.user import User
 
-
 # Using a list of dictionaries for easier subsetting
 # defining it globally for later use
 all_users = {
