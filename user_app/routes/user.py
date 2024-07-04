@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from app.services.user import UserService
-from app.schemas.user import (
+from user_app.services.user import UserService
+from user_app.schemas.user import (
     CreateUserResponse,
     MultipleUsersResponse,
     User,

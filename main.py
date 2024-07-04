@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes.user import create_user_router
+from user_app.routes.user import create_user_router
 
 # application factory pattern (using functions to create instances of applications)
 
