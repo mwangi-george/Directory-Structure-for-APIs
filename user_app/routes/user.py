@@ -48,10 +48,9 @@ def create_user_router() -> APIRouter:
             await user_service.delete_user(user_id)
         except KeyError:
             raise HTTPException(
-                status_code=404,
+                status_code=status.HTTP_404_NOT_FOUND,
                 detail=f"User with id {user_id} does not exist!"
             )
-        return None
 
     @user_router.patch("/{user_id}", response_model=User)
     async def update_user_middle_name(user_id: int, middle_name: str) -> User:
