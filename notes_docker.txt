@@ -1,0 +1,2 @@
+docker build -t myfirstapp:latest .
+docker run --name app1 myfirstapp:latest
