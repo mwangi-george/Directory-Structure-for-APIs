@@ -2,6 +2,7 @@ from fastapi.responses import Response
 from fastapi import (
     APIRouter,
     status,
+    HTTPException,
 )
 from user_app.services.user import UserService
 from user_app.schemas.user import (
@@ -43,7 +44,13 @@ def create_user_router() -> APIRouter:
 
     @user_router.delete("/{user_id}")
     async def remove_user(user_id: int) -> None:
-        await user_service.delete_user(user_id)
+        try:
+            await user_service.delete_user(user_id)
+        except KeyError:
+            raise HTTPException(
+                status_code=404,
+                detail=f"User with id {user_id} does not exist!"
+            )
         return None
 
     @user_router.patch("/{user_id}", response_model=User)
