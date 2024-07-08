@@ -54,9 +54,15 @@ def create_user_router() -> APIRouter:
 
     @user_router.patch("/{user_id}", response_model=User)
     async def update_user_middle_name(user_id: int, middle_name: str) -> User:
-        await user_service.update_middle_name(user_id, middle_name)
-        updated_user = await user_service.get_user(user_id=user_id)
-        return updated_user
+        try:
+            await user_service.update_middle_name(user_id, middle_name)
+            updated_user = await user_service.get_user(user_id=user_id)
+            return updated_user
+        except KeyError:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"User with id {user_id} does not exist!"
+            )
 
     @user_router.patch("/dummy")
     async def test_response_code() -> Response:
