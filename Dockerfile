@@ -1,7 +1,14 @@
-FROM python:3.12-alpine
+FROM python:3.12-alpine 
 
-RUN pip install pipenv
 
-RUN mkdir -p/usr/src/app
 
-WORKDIR /the/workdir/path
+RUN mkdir -p/usr/src/app/app
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt main.py ./
+COPY app ./app
+
+RUN pip install -r requirements.txt
+
+CMD ls 
