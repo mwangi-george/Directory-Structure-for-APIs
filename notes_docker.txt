@@ -1,2 +1,8 @@
+---------build a dockerfile----------------
 docker build -t myfirstapp:latest .
-docker run --name app1 -p 8000:8080 myfirstapp:latest
+
+--------forward port 8000 to the running port 8080 on our computer-------------
+docker run --name app1 -p 8000:8080 myfirstapp:latest 
+
+--------run the app as a background process (as a daemon process)--------------
+docker run -d --name app1 -p 8000:8080 myfirstapp:latest 
