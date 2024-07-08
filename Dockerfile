@@ -1,7 +1,5 @@
 FROM python:3.12-alpine 
 
-
-
 RUN mkdir -p/usr/src/app/app
 
 WORKDIR /usr/src/app
