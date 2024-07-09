@@ -9,8 +9,7 @@ def create_application() -> FastAPI:
     user_router = create_user_router()
     app = FastAPI(
         title="API UserManager",
-        description="Made with ❤️ by George Mwangi"
-    )
+        description="Made with ❤️ by George Mwangi")
     app.include_router(user_router)
     return app
 
