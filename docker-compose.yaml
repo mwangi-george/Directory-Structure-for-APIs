@@ -9,5 +9,6 @@ services:
     # define entrypoint and using reload flag for development
     entrypoint: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080", "--reload"]
     # volumes allow us to map external places of storage to place in our docker container
+    # we can use volumes to persist data as we spin our docker container up and down
     volumes:
       -
