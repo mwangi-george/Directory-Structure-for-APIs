@@ -6,3 +6,13 @@ docker run --name app1 -p 8000:8080 myfirstapp:latest
 
 --------run the app as a background process (as a daemon process)--------------
 docker run -d --name app1 -p 8000:8080 myfirstapp:latest 
+
+
+--------run using docker compose------------------
+docker-compose up --build
+
+----------run in daemon mode (in the background)-----------
+docker-compose up --build -d 
+
+----------kill background process ------------
+docker-compose down
