@@ -11,4 +11,4 @@ services:
     # volumes allow us to map external places of storage to place in our docker container
     # we can use volumes to persist data as we spin our docker container up and down
     volumes:
-      -
+      - .:/usr/src/app # mapping the state of our code into the docker working directory

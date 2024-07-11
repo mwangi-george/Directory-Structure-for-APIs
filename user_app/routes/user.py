@@ -20,7 +20,7 @@ def create_user_router() -> APIRouter:
     )
     user_service = UserService()
 
-    @user_router.get("/all", response_model=MultipleUsersResponse)
+    @user_router.get("/alla", response_model=MultipleUsersResponse)
     async def get_multiple_users_paginated(start: int = 0, limit: int = 2):
         users, total = await user_service.get_multiple_users_with_pagination(start, limit)
         formatted_users = MultipleUsersResponse(users=users, total=total)
